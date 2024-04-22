@@ -1,9 +1,16 @@
 const multer = require("multer");
 const path = require("path");
 
+var fs = require('fs');
+var dir = './media';
+
+if (!fs.existsSync(dir)){
+    fs.mkdirSync(dir);
+}
+
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, "./media");
+        cb(null, dir);
     },
     filename: function (req, file, cb) {
         let filename = ""
